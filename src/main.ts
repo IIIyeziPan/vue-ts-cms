@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import 'normalize.css'
+import './assets/css/index.less'
 // import './service/axios_demo'
 
 // 全局引入

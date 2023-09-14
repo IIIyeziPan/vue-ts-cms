@@ -7,6 +7,10 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
+// 自动导入Icon图标
+const IconsResolver = require('unplugin-icons/resolver')
+const Icons = require('unplugin-icons/webpack')
+
 function resolve(dir) {
   /**
    * __dirname：当前文件夹所在的绝对路径
@@ -47,7 +51,19 @@ module.exports = defineConfig({
         resolvers: [ElementPlusResolver()]
       }),
       Components({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [
+          IconsResolver({
+            // 修改Icon组件前缀，不设置则默认为i,禁用则设置为false
+            prefix: 'icon',
+            // 指定collection，即指定为elementplus图标集ep
+            enabledCollections: ['ep']
+          }),
+          ElementPlusResolver()
+        ]
+      }),
+      // Icons图标自动下载
+      Icons({
+        autoInstall: true
       })
     ]
   }

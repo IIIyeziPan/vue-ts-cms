@@ -57,9 +57,7 @@ class HYRequest {
         console.log('所有实例都有的拦截器：响应成功拦截')
 
         // 将loading移除
-        setTimeout(() => {
-          this.loading?.close()
-        }, 3000)
+        this.loading?.close()
 
         const data = res.data
         if (data.returnCode === '-1001') {
@@ -70,9 +68,7 @@ class HYRequest {
       (err) => {
         console.log('所有实例都有的拦截器：响应失败拦截')
         // 将loading移除
-        setTimeout(() => {
-          this.loading?.close()
-        }, 3000)
+        this.loading?.close()
 
         // 例子： 判断不同的HttpErrorCode显式不同错误信息
         if (err.response.status === 404) {
