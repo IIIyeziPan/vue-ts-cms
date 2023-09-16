@@ -46,23 +46,23 @@ app.mount('#app')
 //   }
 // })
 
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
+// interface DataType {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
 
-hyRequest
-  .get<DataType>({
-    url: '/home/multidata',
-    headers: new AxiosHeaders(),
-    // method: 'GET',
-    showLoading: false
-  })
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
+// hyRequest
+//   .get<DataType>({
+//     url: '/home/multidata',
+//     headers: new AxiosHeaders(),
+//     // method: 'GET',
+//     showLoading: false
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//     console.log(res.returnCode)
+//     console.log(res.success)
+//   })
 
 // hyRequest.get()
