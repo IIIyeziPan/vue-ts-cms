@@ -19,7 +19,7 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: {}
+      userMenus: []
     }
   },
   getters: {},
@@ -57,9 +57,9 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 4.跳到首页
       router.push('/main')
     },
-    phoneLoginAction({ commit }, payload: any) {
-      console.log('执行phoneLoginAction')
-    },
+    // phoneLoginAction({ commit }, payload: any) {
+    //   console.log('执行phoneLoginAction')
+    // }
 
     // 解决刷新数据不保存问题
     loadLocalLogin({ commit }) {
@@ -69,7 +69,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       }
       const userInfo = localCache.getCache('userInfo')
       if (userInfo) {
-        commit('changeuserInfo', userInfo)
+        commit('changeUserInfo', userInfo)
       }
       const userMenus = localCache.getCache('userMenus')
       if (userMenus) {
