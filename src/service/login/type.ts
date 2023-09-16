@@ -3,6 +3,7 @@ export interface IAccount {
   password: string
 }
 
+// 登录
 export interface ILoginResult {
   id: number
   name: string
