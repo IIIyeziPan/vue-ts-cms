@@ -9,8 +9,8 @@ import localCache from '@/utils/cache'
 import router from '@/router'
 
 import { IAccount } from '@/service/login/type'
-import { ILoginState } from './type'
-import { IRootState } from '../type'
+import { ILoginState } from './types'
+import { IRootState } from '../types'
 
 // Moudle<模块类型，根模块类型>
 const loginModule: Module<ILoginState, IRootState> = {
