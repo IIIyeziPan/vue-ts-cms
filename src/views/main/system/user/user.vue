@@ -1,8 +1,7 @@
 <!-- 用户管理 -->
 <template>
   <div class="user">
-    <!-- <hy-form v-bind="searchFormConfig" :formData="formData" /> -->
-    <hy-form v-bind="searchFormConfig" v-model="formData" />
+    <page-search :searchFormConfig="searchFormConfig" />
     <div class="content"></div>
   </div>
 </template>
@@ -12,23 +11,21 @@ import { defineComponent, ref } from 'vue'
 import { IFormItem, IForm } from '@/base-ui/form'
 import HyForm from '@/base-ui/form'
 import { searchFormConfig } from './config/search.config'
+import { Refresh, Search } from '@element-plus/icons-vue'
+
+import PageSearch from '@/components/page-search'
 
 export default defineComponent({
   name: 'user',
   components: {
-    HyForm
+    HyForm,
+    Refresh,
+    Search,
+    PageSearch
   },
   setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
     return {
-      searchFormConfig,
-      formData
+      searchFormConfig
     }
   }
 })
