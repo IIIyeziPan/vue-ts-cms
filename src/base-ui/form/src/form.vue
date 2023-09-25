@@ -15,7 +15,7 @@
                 <el-input
                   :placeholder="item.placeholder"
                   :="item.otherOptions"
-                  show-password="item.type == 'password'"
+                  :show-password="item.type == 'password'"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
