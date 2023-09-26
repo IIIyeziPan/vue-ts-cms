@@ -3,7 +3,12 @@
   <div class="user">
     <page-search :searchFormConfig="searchFormConfig" />
     <div class="content">
-      <hy-table :listData="userList" :propList="propList"></hy-table>
+      <!-- <hy-table :listData="userList" :propList="propList"></hy-table> -->
+      <el-table :data="userList" border style="width: 100%">
+        <template v-for="propItem in propList" :key="propItem.key">
+          <el-table-column v-bind="propItem" align="center"></el-table-column>
+        </template>
+      </el-table>
     </div>
   </div>
 </template>
@@ -37,12 +42,12 @@ export default defineComponent({
     const userCount = computed(() => store.state.system.userCount)
 
     const propList = [
-      { props: 'name', label: '用户名', minWidth: '100' },
-      { props: 'realname', label: '真实姓名', minWidth: '100' },
-      { props: 'cellphone', label: '电话号码', minWidth: '100' },
-      { props: 'enable', label: '状态', minWidth: '100' },
-      { props: 'createAt', label: '创建时间', minWidth: '250' },
-      { props: 'updateAt', label: '更新时间', minWidth: '250' }
+      { prop: 'name', label: '用户名', minWidth: '100' },
+      { prop: 'realname', label: '真实姓名', minWidth: '100' },
+      { prop: 'cellphone', label: '电话号码', minWidth: '100' },
+      { prop: 'enable', label: '状态', minWidth: '100' },
+      { prop: 'createAt', label: '创建时间', minWidth: '250' },
+      { prop: 'updateAt', label: '更新时间', minWidth: '250' }
     ]
 
     return {

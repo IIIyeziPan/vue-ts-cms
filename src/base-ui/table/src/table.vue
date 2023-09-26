@@ -1,16 +1,5 @@
 <template>
-  <div class="hy-table">
-    <el-table :data="listData" border style="width: 100%">
-      <template v-for="propItem in propList" :key="propItem.prop">
-        <el-table-column
-          :prop="propItem.props"
-          :label="propItem.label"
-          :min-width="propItem.minWidth"
-          align="center"
-        />
-      </template>
-    </el-table>
-  </div>
+  <div class="hy-table"></div>
 </template>
 
 <script lang="ts">
