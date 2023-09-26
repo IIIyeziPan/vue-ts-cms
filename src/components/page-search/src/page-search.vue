@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { Refresh, Search } from '@element-plus/icons-vue'
 import HyForm from '@/base-ui/form'
 
 export default defineComponent({
@@ -36,7 +37,9 @@ export default defineComponent({
     }
   },
   components: {
-    HyForm
+    HyForm,
+    Refresh,
+    Search
   },
   setup() {
     const formData = ref({

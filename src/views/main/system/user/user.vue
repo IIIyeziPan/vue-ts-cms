@@ -7,23 +7,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { IFormItem, IForm } from '@/base-ui/form'
-import HyForm from '@/base-ui/form'
+import { defineComponent, computed, ref } from 'vue'
+import { useStore } from '@/store'
+
 import { searchFormConfig } from './config/search.config'
-import { Refresh, Search } from '@element-plus/icons-vue'
 
 import PageSearch from '@/components/page-search'
 
 export default defineComponent({
   name: 'user',
   components: {
-    HyForm,
-    Refresh,
-    Search,
     PageSearch
   },
   setup() {
+    const store = useStore()
+    store.dispatch('system/getPageListAction', {
+      pageUrl: '/users/list',
+      queryInfo: {
+        offset: 0,
+        size: 10
+      }
+    })
+
+    const userList = computed(() => store.state.system.useList)
+    const userCount = computed(() => store.state.system.userCount)
+
     return {
       searchFormConfig
     }
