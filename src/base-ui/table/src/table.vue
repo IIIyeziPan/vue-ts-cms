@@ -1,9 +1,23 @@
 <template>
-  <div class="hy-table"></div>
+  <div class="hy-table">
+    <el-table :data="listData" border style="width: 100%">
+      <template v-for="propItem in propList" :key="propItem.key">
+        <el-table-column v-bind="propItem" align="center">
+          <template #default="scope">
+            <slot :name="propItem.slotName" :row="scope.row">
+              {{ scope.row[propItem.prop] }}
+            </slot>
+          </template>
+        </el-table-column>
+      </template>
+    </el-table>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+
+type propItem = any
 
 export default defineComponent({
   props: {
@@ -12,7 +26,7 @@ export default defineComponent({
       required: true
     },
     propList: {
-      type: Array,
+      type: Array as PropType<propItem[]>,
       required: true
     }
   },
