@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { globalRegister } from './global'
 import 'normalize.css'
 import './assets/css/index.less'
 
@@ -12,7 +13,12 @@ import store from './store'
 import { setupStore } from './store'
 
 const app = createApp(App)
+
+// 注册全局属性
+app.use(globalRegister)
+
 app.use(store)
 setupStore()
 app.use(router)
+
 app.mount('#app')
