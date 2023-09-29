@@ -1,3 +1,4 @@
+// dayjs库
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 
@@ -10,4 +11,12 @@ export function formatUtcString(
   format: string = DATE_TIME_FORMAT
 ) {
   return dayjs.utc(utcString).format(format)
+}
+
+// 转化时间戳
+export function formatTimestamp(
+  timestamp: number,
+  format: string = DATE_TIME_FORMAT
+) {
+  return
 }

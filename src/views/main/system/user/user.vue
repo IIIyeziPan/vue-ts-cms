@@ -3,11 +3,16 @@
   <div class="user">
     <page-search :searchFormConfig="searchFormConfig" />
     <div class="content">
-      <hy-table :listData="userList" :propList="propList">
+      <hy-table
+        :listData="userList"
+        :propList="propList"
+        :showIndexColum="showIndexColum"
+        :showSelectColum="showSelectColum"
+      >
         <template #status="scope">
           <el-button
             plain
-            size="mini"
+            size="default"
             :type="scope.row.enable ? 'success' : 'danger'"
             >{{ scope.row.enable ? '启用' : '禁用' }}</el-button
           >
@@ -18,6 +23,22 @@
         <template #updateAt="scope">
           <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
         </template>
+        <template #handler>
+          <div class="handle-btns">
+            <el-button size="default" type="text">
+              <el-icon>
+                <Edit />
+              </el-icon>
+              编辑
+            </el-button>
+            <el-button size="default" type="text">
+              <el-icon>
+                <Delete />
+              </el-icon>
+              删除
+            </el-button>
+          </div>
+        </template>
       </hy-table>
     </div>
   </div>
@@ -26,6 +47,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
+import { Edit, Delete } from '@element-plus/icons-vue'
 
 import { searchFormConfig } from './config/search.config'
 
@@ -36,7 +58,9 @@ export default defineComponent({
   name: 'user',
   components: {
     PageSearch,
-    HyTable
+    HyTable,
+    Edit,
+    Delete
   },
   setup() {
     const store = useStore()
@@ -67,14 +91,20 @@ export default defineComponent({
         label: '更新时间',
         minWidth: '250',
         slotName: 'updateAt'
-      }
+      },
+      { label: '操作', minWidth: '120', slotName: 'handler' }
     ]
+
+    const showIndexColum = true
+    const showSelectColum = true
 
     return {
       searchFormConfig,
       userList,
       userCount,
-      propList
+      propList,
+      showIndexColum,
+      showSelectColum
     }
   }
 })
@@ -84,5 +114,9 @@ export default defineComponent({
 .content {
   padding: 20px;
   border-top: 20px solid #f5f5f5;
+}
+
+.handle-btns {
+  display: flex;
 }
 </style>
