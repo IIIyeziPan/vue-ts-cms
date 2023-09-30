@@ -5,10 +5,17 @@
     <div class="content">
       <hy-table
         :listData="userList"
+        :title="title"
         :propList="propList"
         :showIndexColum="showIndexColum"
         :showSelectColum="showSelectColum"
       >
+        <!-- 1.header中的插槽 -->
+        <template #headerHandler>
+          <el-button type="primary" size="small"> 新建用户 </el-button>
+        </template>
+
+        <!-- 2.列中的插槽 -->
         <template #status="scope">
           <el-button
             plain
@@ -25,13 +32,13 @@
         </template>
         <template #handler>
           <div class="handle-btns">
-            <el-button size="default" type="text">
+            <el-button size="default" type="primary" link>
               <el-icon>
                 <Edit />
               </el-icon>
               编辑
             </el-button>
-            <el-button size="default" type="text">
+            <el-button size="default" type="primary" link>
               <el-icon>
                 <Delete />
               </el-icon>
@@ -39,6 +46,7 @@
             </el-button>
           </div>
         </template>
+        <template #header></template>
       </hy-table>
     </div>
   </div>
@@ -47,7 +55,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
-import { Edit, Delete } from '@element-plus/icons-vue'
+import { Edit, Delete, Refresh } from '@element-plus/icons-vue'
 
 import { searchFormConfig } from './config/search.config'
 
@@ -60,7 +68,8 @@ export default defineComponent({
     PageSearch,
     HyTable,
     Edit,
-    Delete
+    Delete,
+    Refresh
   },
   setup() {
     const store = useStore()
@@ -71,6 +80,8 @@ export default defineComponent({
         size: 10
       }
     })
+
+    const title = '用户列表'
 
     const userList = computed(() => store.state.system.useList)
     const userCount = computed(() => store.state.system.userCount)
@@ -101,6 +112,7 @@ export default defineComponent({
     return {
       searchFormConfig,
       userList,
+      title,
       userCount,
       propList,
       showIndexColum,
@@ -118,5 +130,7 @@ export default defineComponent({
 
 .handle-btns {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
