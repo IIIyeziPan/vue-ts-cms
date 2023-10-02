@@ -37,20 +37,19 @@
         </el-table-column>
       </template>
     </el-table>
+
     <div class="footer">
       <slot name="footer">
         <el-pagination
-          v-model:current-page="currentPage4"
-          v-model:page-size="pageSize4"
-          :page-sizes="[100, 200, 300, 400]"
-          :small="small"
-          :disabled="disabled"
-          :background="background"
-          layout="->,total, sizes, prev, pager, next, jumper"
-          :total="400"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-        />
+          :current-page="currentPage4"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="->,total, sizes, prev, pager, next, jumper"
+          :total="400"
+        >
+        </el-pagination>
       </slot>
     </div>
   </div>
@@ -58,7 +57,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-
 type propItem = any
 
 export default defineComponent({

@@ -12,7 +12,3 @@ declare module '@vue/runtime-core' {
     $store: Store<State>
   }
 }
-
-declare module 'element-plus/dist/locale/zh-cn.mjs'
-declare module 'element-plus/dist/locale/en.mjs'
-declare module 'element-plus'
