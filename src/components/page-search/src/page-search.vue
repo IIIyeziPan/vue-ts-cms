@@ -6,7 +6,7 @@
       </template>
       <template #footer>
         <div class="hander-btns">
-          <el-button
+          <el-button @click="handleResetClick"
             ><el-icon style="vertical-align: middle">
               <Refresh />
             </el-icon>
@@ -41,16 +41,29 @@ export default defineComponent({
     Refresh,
     Search
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  setup(props) {
+    // 双向绑定的属性应该是由配置文件的field来决定
+    // 1.优化一：formData中的属性应该动态决定
+    const formItems = props.searchFormConfig?.formItems ?? []
+    const formOriginData: any = {}
+    for (const item of formItems) {
+      formOriginData[item.field] = ''
+    }
+    const formData = ref(formOriginData)
+
+    // 2.优化二：当用户点击重置
+    const handleResetClick = () => {
+      // 1.
+      // for (const key in formOriginData) {
+      //   formData.value[`${key}`] = formOriginData[key]
+      // }
+      // 2.
+      formData.value = formOriginData
+    }
+
     return {
-      formData
+      formData,
+      handleResetClick
     }
   }
 })
