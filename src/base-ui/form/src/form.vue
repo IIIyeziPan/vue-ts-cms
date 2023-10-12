@@ -6,7 +6,7 @@
     <el-form :label-width="labelWidth">
       <el-row>
         <template v-for="item in formItems" :key="item.label">
-          <el-col :="collLayout">
+          <el-col :="colLayout">
             <el-form-item
               :label="item.label"
               :rules="item.rules"
@@ -77,7 +77,7 @@ export default defineComponent({
       type: Object,
       default: () => ({ padding: '10px 40px' })
     },
-    collLayout: {
+    colLayout: {
       type: Object,
       default: () => ({
         xl: 6, // >1920px 4个
