@@ -49,10 +49,10 @@
           </el-button>
           <el-button
             v-if="isDelete"
-            @click="handleDeleteClick(scope.row)"
             size="default"
             type="primary"
             link
+            @click="handleDeleteClick(scope.row)"
           >
             <el-icon>
               <Delete />
