@@ -27,5 +27,6 @@ export const modalConfig = {
   ],
   colLayout: {
     span: 24
-  }
+  },
+  itemStyle: {}
 }
