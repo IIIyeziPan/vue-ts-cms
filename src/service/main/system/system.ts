@@ -18,3 +18,19 @@ export function deletePageData(url: string) {
     url: url
   })
 }
+
+export function createPageData(url: string, newData: any) {
+  return hyRequest.post<IDataType>({
+    headers: new AxiosHeaders(),
+    url: url,
+    data: newData
+  })
+}
+
+export function editPageData(url: string, editData: any) {
+  return hyRequest.patch<IDataType>({
+    headers: new AxiosHeaders(),
+    url: url,
+    data: editData
+  })
+}
