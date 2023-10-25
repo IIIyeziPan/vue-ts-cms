@@ -2,7 +2,9 @@
   <div class="dashboard">
     <el-row :gutter="10">
       <el-col :span="7">
-        <hy-card title="分类商品数量(饼图)"></hy-card>
+        <hy-card title="分类商品数量(饼图)">
+          <pie-echart :pieData="categoryGoodsCount"></pie-echart>
+        </hy-card>
       </el-col>
       <el-col :span="10">
         <hy-card title="不同城市商品销售"></hy-card>
@@ -14,9 +16,7 @@
 
     <el-row :gutter="10" class="content-row">
       <el-col :span="12">
-        <hy-card title="分类商品的销量">
-          <base-echart :options="options"></base-echart>
-        </hy-card>
+        <hy-card title="分类商品的销量"> </hy-card>
       </el-col>
       <el-col :span="12">
         <hy-card title="分类商品的收藏)"></hy-card>
@@ -26,21 +26,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useStore } from 'vuex'
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
 
 import HyCard from '@/base-ui/card'
+import PieEchart from '@/components/page-echarts'
 import BaseEchart from '@/base-ui/echart'
 
 export default defineComponent({
   name: 'dashboard',
   components: {
     HyCard,
-    BaseEchart
+    BaseEchart,
+    PieEchart
   },
   setup() {
     const store = useStore()
     store.dispatch('dashboard/getDashboardDataAction')
+
+    const categoryGoodsCount = computed(() => {
+      return store.state.dashboard.categoryGoodsCount.map((item: any) => {
+        return { name: item.name, value: item.goodsCount }
+      })
+    })
 
     const options = {
       xAxis: {
@@ -63,7 +71,7 @@ export default defineComponent({
     }
 
     return {
-      options
+      categoryGoodsCount
     }
   }
 })
